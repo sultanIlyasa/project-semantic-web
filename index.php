@@ -23,45 +23,44 @@
     if (isset($_POST['search'])) {
         $test = $_POST['search'];
         $data = sparql_get(
-            "http://localhost:3030/TeamSepakBola",
+            "http://localhost:3030/tim-sepakbola-eropa",
             "
-                prefix id: <https://EuropeFootballClub.com/> .
-                prefix data: <https://EuropeFootballClub.com/ns/data#> .
-                prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                prefix id: <https://EuropeFootballClub.com/> 
+                prefix data: <https://EuropeFootballClub.com/ns/data#> 
+                prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
                 
                 SELECT ?clubname ?foundationyear ?city ?manager
                 WHERE
                 { 
                     ?team
                     data:clubname       ?clubname ;
-                    data:foundationyear   ?foundationyear ;
+                    data:foundationyear ?foundationyear ;
                     data:city           ?city ;
                     data:manager        ?manager .
                 
                     FILTER 
-                    (regex (?clubname, '$test', 'i') 
-                    || regex (?foundationyear, '$test', 'i') 
-                    || regex (?city, '$test', 'i') 
-                    || regex (?manager, '$test', 'i'))
-                    }"
+                    (regex(?clubname, '$test', 'i') 
+                    || regex(?foundationyear, '$test', 'i') 
+                    || regex(?city, '$test', 'i') 
+                    || regex(?manager, '$test', 'i'))
+                }"
         );
     } else {
         $data = sparql_get(
-            "http://localhost:3030/TeamSepakBola",
+            "http://localhost:3030/tim-sepakbola-eropa",
             "
-            prefix id: <https://EuropeFootballClub.com/> .
-            prefix data: <https://EuropeFootballClub.com/ns/data#> .
-            prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-            
-            SELECT ?clubname ?foundationyear ?city ?manager
-            WHERE
+                prefix id: <https://EuropeFootballClub.com/> 
+                prefix data: <https://EuropeFootballClub.com/ns/data#> 
+                prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+                
+                SELECT ?clubname ?foundationyear ?city ?manager
+                WHERE
                 { 
                     ?team
                     data:clubname       ?clubname ;
-                    data:foundationyear   ?foundationyear ;
+                    data:foundationyear ?foundationyear ;
                     data:city           ?city ;
                     data:manager        ?manager .
-                
                 }
             "
         );
@@ -93,7 +92,7 @@
         </div>
     </nav>
 
-    <div class="container container-fluid mt-3  ">
+    <div class="container container-fluid mt-3">
         <i class="fa-solid fa-magnifying-glass"></i><span>Menampilkan hasil pencarian untuk Team Sepak Bola "<?php echo $test; ?>"</span>
         <table class="table table-bordered table-striped table-hover text-center">
             <thead class="table-dark">
