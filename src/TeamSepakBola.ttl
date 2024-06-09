@@ -1,0 +1,64 @@
+@prefix id: <https://EuropeFootballClub.com/> .
+@prefix data: <https://EuropeFootballClub.com/ns/data#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+id:1
+    data:clubname "FC Barcelona";
+    data:foundationyear "29 November 1899";
+    data:city "Barcelona";
+    data:manager "Xavi Hernandez".
+
+id:2  
+    data:clubname "Real Madrid CF";
+    data:foundationyear "6 Maret 1902";
+    data:city "Madrid";
+    data:manager "Carlo Ancelotti".
+
+id:3  
+    data:clubname "Liverpool FC";
+    data:foundationyear "3 Juni 1892";
+    data:city "Liverpool";
+    data:manager "Jurgen Klopp".
+
+id:4  
+    data:clubname "Manchester United FC";
+    data:foundationyear "1878";
+    data:city "Manchester";
+    data:manager "Ralf Rangnick".
+
+id:5  
+    data:clubname "Paris Saint-Germain FC";
+    data:foundationyear "12 Agustus 1970";
+    data:city "Paris";
+    data:manager "Mauricio Pochettino".
+
+id:6  
+    data:clubname "FC Bayern Munich";
+    data:foundationyear "27 Februari 1900";
+    data:city "Munich";
+    data:manager "Julian Nagelsmann".
+
+id:7  
+    data:clubname "Juventus FC";
+    data:foundationyear "1 November 1897";
+    data:city "Turin";
+    data:manager "Massimiliano Allegri".
+
+id:8  
+    data:clubname "Chelsea FC";
+    data:foundationyear "10 Maret 1905";
+    data:city "London";
+    data:manager "Thomas Tuchel".
+
+id:9  
+    data:clubname "Borussia Dortmund";
+    data:foundationyear "19 Desember 1909";
+    data:city "Dortmund";
+    data:manager "Marco Rose".
+
+id:10  
+    data:clubname "Atletico Madrid";
+    data:foundationyear "26 April 1903";
+    data:city "Madrid";
+    data:manager "Diego Simeone".
+
