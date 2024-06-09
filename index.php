@@ -20,6 +20,17 @@
     <?php
     require_once("sparqllib.php");
     $test = "";
+    $sort = "";
+    $column = "";
+
+    if(isset($_GET['sort'])) {
+        $sort = $_GET['sort'];
+        $column = "ORDER BY ?$sort";
+    } else {
+        $column = "";
+    }
+
+
     if (isset($_POST['search'])) {
         $test = $_POST['search'];
         $data = sparql_get(
@@ -43,7 +54,8 @@
                     || regex(?foundationyear, '$test', 'i') 
                     || regex(?city, '$test', 'i') 
                     || regex(?manager, '$test', 'i'))
-                }"
+                }
+            " . $column
         );
     } else {
         $data = sparql_get(
@@ -62,7 +74,7 @@
                     data:city           ?city ;
                     data:manager        ?manager .
                 }
-            "
+            " . $column
         );
     }
 
@@ -93,7 +105,20 @@
     </nav>
 
     <div class="container container-fluid mt-3">
-        <i class="fa-solid fa-magnifying-glass"></i><span>Menampilkan hasil pencarian untuk Team Sepak Bola "<?php echo $test; ?>"</span>
+        <!-- Dropdown to sort -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort By
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="index.php?sort=clubname">Club Name</a></li>
+                <li><a class="dropdown-item" href="index.php?sort=foundationyear">Founded</a></li>
+                <li><a class="dropdown-item" href="index.php?sort=city">City</a></li>
+                <li><a class="dropdown-item" href="index.php?sort=manager">Manager</a></li>
+            </ul>
+        </div>
+
+        <i class="fa-solid fa-magnifying-glass my-2"></i><span>Menampilkan hasil pencarian untuk Team Sepak Bola <?php if ($test != "") echo "dengan keyword '$test'"; ?></span>
         <table class="table table-bordered table-striped table-hover text-center">
             <thead class="table-dark">
                 <tr>
@@ -110,11 +135,17 @@
                     <tr>
                         <td><?= ++$i ?></td>
                         <td><?= $dat['clubname'] ?></td>
-                        <td><?= $dat['foundationyear'] ?></td>
+                        <!-- Format date -->
+                        <td><?= date('d F Y', strtotime($dat['foundationyear'])) ?></td>
                         <td><?= $dat['city'] ?></td>
                         <td><?= $dat['manager'] ?></td>
                     </tr>
                 <?php endforeach; ?>
+                <?php if ($i == 0) : ?>
+                    <tr>
+                        <td colspan="5">Data tidak ditemukan</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
